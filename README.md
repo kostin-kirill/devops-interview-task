@@ -1,13 +1,13 @@
-Infrastructure Coding Test
-==========================
+DevOps Pairing Exercise
+=======================
 
 # Goal
 
-Script the creation of a web server, and a script to check the server is up.
+Automate the creation of a web server, and a script to check the server is up.
 
 # Prerequisites
 
-You will need an AWS account. Create one if you don't own one already. You can use free-tier resources for this test.
+Use the AWS account credentials provided.
 
 # The Task
 
@@ -26,19 +26,19 @@ You are required to set up a new server in AWS. It must:
 Fork this repository.
 
 * Provide instructions on how to create the server.
-* Provide a script that can be run periodically (and externally) to check if the server is up and serving the expected version number. Use your scripting language of choice.
+* Use a configuration management tool (such as Puppet, Chef or Ansible) to bootstrap the server.
+* Provide a script that can be run periodically (and externally) to check if the server is up and serving the expected version number. 
 * Alter the README to contain the steps required to:
   * Create the server.
-  * Run the checker script.
-* Provide us IAM credentials to login to the AWS account. If you have other resources in it make sure we can only access what is related to this test.
+  * Run the health check script.
 
-Give our account `engagetech` access to your fork, and send us an email when you’re done. Feel free to ask questions if anything is unclear, confusing, or just plain missing.
+Give user `aeells|schmiegelow` access to your fork. 
+Feel free to ask questions as you go if anything is unclear, confusing, or just plain missing.
 
 # Extra Credit
 
-We know time is precious, we won't mark you down for not doing the extra credits, but if you want to give them a go...
+This exercise is timeboxed, but if any of these shortcut the process by making it easier in the long-run they might be worth considering up front. We won't mark you down for not doing the extra credits, but if you want to give them a go...
 
-* Use a configuration management tool (such as Puppet, Chef or Ansible) to bootstrap the server.
 * Put the server behind a load balancer.
 * Run Nginx inside a Docker container.
 * Make the checker script SSH into the instance, check if Nginx is running and start it if it isn't.
@@ -47,11 +47,7 @@ We know time is precious, we won't mark you down for not doing the extra credits
 
 #### What scripting languages can I use?
 
-Anyone you like. You’ll have to justify your decision. We use Bash, Python and JavaScript internally. Please pick something you're familiar with, as you'll need to be able to discuss it.
-
-#### Will I have to pay for the AWS charges?
-
-No. You are expected to use free-tier resources only and not generate any charges. Please remember to delete your resources once the review process is over so you are not charged by AWS.
+Any you like. You’ll have to justify your decision. We use Bash, Python, Groovy and JavaScript internally. Please pick something you're familiar with, as you'll need to be able to discuss it.
 
 #### What will you be grading me on?
 
@@ -59,9 +55,5 @@ Scripting skills, elegance, understanding of the technologies you use, security,
 
 #### Will I have a chance to explain my choices?
 
-Feel free to comment your code, or put explanations in a pull request within the repo.
-If we proceed to a phone interview, we’ll be asking questions about why you made the choices you made.
-
-#### Why doesn't the test include X?
-
-Good question. Feel free to tell us how to make the test better. Or, you know, fork it and improve it!
+Hopefully this will emerge as we pair and converse. 
+But feel free to comment your code, or put explanations in a pull request within the repo.
