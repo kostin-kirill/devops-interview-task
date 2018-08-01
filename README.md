@@ -5,15 +5,11 @@ DevOps Pairing Exercise
 
 Automate the creation of a web server, and a script to check the server is up.
 
-# Prerequisites
-
-Use the AWS account credentials provided.
-
 # The Task
 
-You are required to set up a new server in AWS. It must:
+You are required to provision and deploy a new service in AWS. It must:
 
-* Be publicly accessible.
+* Be publicly accessible, but *only* on port 80.
 * Run Nginx.
 * Serve a `/version.txt` file, containing only static text representing a version number, for example:
 
@@ -21,27 +17,45 @@ You are required to set up a new server in AWS. It must:
 1.0.6
 ```
 
+# Prerequisites
+
+Some or all of the AWS information below can help you achieve this task:
+
+               region: eu-west-1
+               vpc-id: vpc-8bc8d2ef
+    public subnet-ids: subnet-48de3e2f (AZ a), subnet-313cdf78 (AZ b)
+            S3 bucket: s3://101waystest/
+
+AWS credentials will be provided when the exercise begins.
+
 # Mandatory Work
 
 Fork this repository.
 
 * Provide instructions on how to create the server.
-* Use a configuration management tool (such as Puppet, Chef or Ansible) to bootstrap the server.
-* Provide a script that can be run periodically (and externally) to check if the server is up and serving the expected version number. 
+
+* Bootstrap and provision the server however you wish. Use user-data or a configuration management tool (such as Puppet, Chef or Ansible). Alternatively launch an idempotent AMI with packer and terraform, or even via the console. Be prepared to justify your decision!
+
+* Provide a script that can be run periodically and externally to check if the server is up and serving the expected version number. 
+
 * Alter the README to contain the steps required to:
   * Create the server.
   * Run the health check script.
 
-Give user `aeells|schmiegelow` access to your fork. 
+Give user `aeells|schmiegelow` access to your fork.
 Feel free to ask questions as you go if anything is unclear, confusing, or just plain missing.
 
 # Extra Credit
 
 This exercise is timeboxed, but if any of these shortcut the process by making it easier in the long-run they might be worth considering up front. We won't mark you down for not doing the extra credits, but if you want to give them a go...
 
-* Put the server behind a load balancer.
+* Make the service resilient in 2 availability zones.
 * Run Nginx inside a Docker container.
-* Make the checker script SSH into the instance, check if Nginx is running and start it if it isn't.
+* Use the checker script to start Nginx if it is not running.
+
+        For example, you might decide to modify the script to SSH in to the instances and start if needed.
+        Alternatively you might configure a process manager to use the checker script on the hosts themselves,
+        such as supervisord or plain old systemd.
 
 # Questions
 
