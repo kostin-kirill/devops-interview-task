@@ -7,7 +7,7 @@ Automate the creation of a web server, and a script to check the server is up.
 
 # The Task
 
-You are required to provison and deploy a new service in AWS. It must:
+You are required to provision and deploy a new service in AWS. It must:
 
 * Be publicly accessible, but *only* on port 80.
 * Run Nginx.
@@ -36,7 +36,7 @@ Fork this repository.
 
 * Bootstrap and provision the server however you wish. Use user-data or a configuration management tool (such as Puppet, Chef or Ansible). Alternatively launch an idempotent AMI with packer and terraform, or even via the console. Be prepared to justify your decision!
 
-* Provide a script that can be run periodically (and externally) to check if the server is up and serving the expected version number. 
+* Provide a script that can be run periodically and externally to check if the server is up and serving the expected version number. 
 
 * Alter the README to contain the steps required to:
   * Create the server.
@@ -50,9 +50,12 @@ Feel free to ask questions as you go if anything is unclear, confusing, or just 
 This exercise is timeboxed, but if any of these shortcut the process by making it easier in the long-run they might be worth considering up front. We won't mark you down for not doing the extra credits, but if you want to give them a go...
 
 * Make the service resilient in 2 availability zones.
-* Put the server behind a load balancer.
 * Run Nginx inside a Docker container.
-* Make the checker script SSH into the instance, check if Nginx is running and start it if it isn't.
+* Use the checker script to start Nginx if it is not running.
+
+        For example, you might decide to modify the script to SSH in to the instances and start if needed.
+        Alternatively you might configure a process manager to use the checker script on the hosts themselves,
+        such as supervisord or plain old systemd.
 
 # Questions
 
