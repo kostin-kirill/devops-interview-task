@@ -3,7 +3,7 @@ DevOps Pairing Exercise
 
 # Goal
 
-Automate the creation of a web server, and a script to check the server is up.
+Automate the creation of a web server, and a healthcheck script to verify the server is up and responding correctly.
 
 # The Task
 
