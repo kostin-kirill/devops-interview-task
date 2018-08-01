@@ -36,25 +36,25 @@ Fork this repository.
 
 * Bootstrap and provision the server however you wish. Use user-data or a configuration management tool (such as Puppet, Chef or Ansible). Alternatively launch an idempotent AMI with packer and terraform, or even via the console. Be prepared to justify your decision!
 
-* Provide a script that can be run periodically and externally to check if the server is up and serving the expected version number. 
+* Provide a heatlhcheck script that can be run externally to periodically check if the server is up and serving the expected version number.
 
 * Alter the README to contain the steps required to:
   * Create the server.
-  * Run the health check script.
+  * Run the healthcheck script.
 
-Give user `aeells|schmiegelow` access to your fork.
+Give github users `aeells|schmiegelow` access to your fork.
 Feel free to ask questions as you go if anything is unclear, confusing, or just plain missing.
 
 # Extra Credit
 
-This exercise is timeboxed, but if any of these shortcut the process by making it easier in the long-run they might be worth considering up front. We won't mark you down for not doing the extra credits, but if you want to give them a go...
+This exercise is time-boxed, but if any of these shortcut the process by making it easier in the long-run they might be worth considering up front. We won't mark you down for not doing the extra credits, but if you want to give them a go...
 
 * Make the service resilient in 2 availability zones.
 * Run Nginx inside a Docker container.
-* Use the checker script to start Nginx if it is not running.
+* Use the healthcheck script to start Nginx if it is not running.
 
         For example, you might decide to modify the script to SSH in to the instances and start if needed.
-        Alternatively you might configure a process manager to use the checker script on the hosts themselves,
+        Alternatively you might configure a process manager to use the script on the hosts themselves,
         such as supervisord or plain old systemd.
 
 # Questions
@@ -69,5 +69,5 @@ Scripting skills, elegance, understanding of the technologies you use, security,
 
 #### Will I have a chance to explain my choices?
 
-Hopefully this will emerge as we pair and converse. 
+Hopefully this will emerge as we pair and converse.
 But feel free to comment your code, or put explanations in a pull request within the repo.
