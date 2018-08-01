@@ -19,14 +19,7 @@ You are required to provision and deploy a new service in AWS. It must:
 
 # Prerequisites
 
-Some or all of the AWS information below can help you achieve this task:
-
-               region: eu-west-1
-               vpc-id: vpc-8bc8d2ef
-    public subnet-ids: subnet-48de3e2f (AZ a), subnet-313cdf78 (AZ b)
-            S3 bucket: s3://101waystest/
-
-AWS credentials will be provided when the exercise begins.
+AWS creds/VPC and S3 bucket names etc will be provided when the exercise begins.
 
 # Mandatory Work
 
