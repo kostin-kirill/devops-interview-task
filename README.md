@@ -7,10 +7,11 @@ Automate the creation of a web server, and provide a healthcheck script to verif
 
 # The Task
 
-You are required to provision and deploy a new service in AWS. It must:
+You are required to provision and deploy a new service in Azure Cloud. It must:
 
-* Be publicly accessible, but *only* on port 80.
+* Be publicly accessible, but *only* on port 80 and 443.
 * Run Nginx.
+* Generate self signed cert
 * Serve a `/version.txt` file, containing only static text representing a version number, for example:
 
 ```
@@ -19,7 +20,7 @@ You are required to provision and deploy a new service in AWS. It must:
 
 # Prerequisites
 
-AWS creds/VPC and S3 bucket names etc will be provided when the exercise begins.
+Microsoft temporary account and Azure Subscribtion access will be provided in advance.
 
 # Mandatory Work
 
@@ -27,7 +28,7 @@ Fork this repository.
 
 * Provide instructions on how to create the server.
 
-* Bootstrap and provision the server however you wish. Use user-data or a configuration management tool (such as Puppet, Chef or Ansible). Alternatively launch an idempotent AMI with packer and terraform, or even via the console. Be prepared to justify your decision!
+* Bootstrap and provision the server using terraform. Use cloud init or a configuration management tool (such as Puppet, Chef or Ansible). Be prepared to justify your decision!
 
 * Provide a heatlhcheck script that can be run externally to periodically check if the server is up and serving the expected version number.
 
@@ -35,7 +36,7 @@ Fork this repository.
   * Create the server.
   * Run the healthcheck script.
 
-Give github users `aeells|schmiegelow` access to your fork.
+Give github users `kostin-kirill|infradmin` access to your fork.
 Feel free to ask questions as you go if anything is unclear, confusing, or just plain missing.
 
 # Extra Credit
@@ -43,12 +44,12 @@ Feel free to ask questions as you go if anything is unclear, confusing, or just 
 This exercise is time-boxed, but if any of these shortcut the process by making it easier in the long-run they might be worth considering up front. We won't mark you down for not doing the extra credits, but if you want to give them a go...
 
 * Make the service resilient in 2 availability zones.
-* Run Nginx inside a Docker container.
+* Run Nginx inside a Docker container or Kubernetes cluster.
 * Use the healthcheck script to start Nginx if it is not running.
 
         For example, you might decide to modify the script to SSH in to the instances and start if needed.
         Alternatively you might configure a process manager to use the script on the hosts themselves,
-        such as supervisord or plain old systemd.
+        such as supervisord or systemd.
 
 # Questions
 
