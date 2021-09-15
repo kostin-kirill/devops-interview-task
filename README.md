@@ -37,7 +37,7 @@ Fork this repository.
   * Create the server.
   * Run the healthcheck script.
 
-Give github users `kostin-kirill|infradmin` access to your fork.
+Give github users `kostin-kirill|infradmin|deep8611` access to your fork.
 Feel free to ask questions as you go if anything is unclear, confusing, or just plain missing.
 
 # Extra Credit
