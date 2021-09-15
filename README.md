@@ -9,7 +9,8 @@ Automate the creation of a web server, and provide a healthcheck script to verif
 
 You are required to provision and deploy a new service in Azure Cloud. It must:
 
-* Be publicly accessible, but *only* on port 80 and 443.
+* Be publicly accessible, but *only* on port 80 and 443 via Load Balancer.
+* Accessible via SSH with Load balancer inbound NAT on Custom Port
 * Run Nginx.
 * Generate self signed cert
 * Serve a `/version.txt` file, containing only static text representing a version number, for example:
@@ -46,12 +47,18 @@ This exercise is time-boxed, but if any of these shortcut the process by making 
 * Make the service resilient in 2 availability zones.
 * Run Nginx inside a Docker container or Kubernetes cluster.
 * Use the healthcheck script to start Nginx if it is not running.
+* Create DNS zone in Azure subscription with name devopstest(%randomnumber%).group
+* Issue Let's encrypt certiface for devopstest(%randomnumber%).group and www.devopstest(%randomnumber%).group and apply to webserver. 
 
         For example, you might decide to modify the script to SSH in to the instances and start if needed.
         Alternatively you might configure a process manager to use the script on the hosts themselves,
         such as supervisord or systemd.
 
 # Questions
+
+#### Can I use Google?
+
+Yes
 
 #### What scripting languages can I use?
 
