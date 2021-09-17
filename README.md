@@ -8,6 +8,7 @@ This service has these steps:
 3. create load balancer
 4. configure server (install deps)
 5. install web server
+6. create selfsigned certs
 
 
 
