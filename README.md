@@ -1,4 +1,4 @@
-Crate nginx server azure
+Create nginx server azure
 =========================
 # General information
 This service has stack of bash+ansible+az cli
