@@ -1,0 +1,45 @@
+---
+- hosts: new
+  become: yes
+  #gather_facts: yes
+  tasks:
+  - name: Add epel-release repo
+    yum:
+       name: epel-release
+       state: present
+  - name: Add nginx
+    yum:
+       name: nginx
+       state: present
+  - name: Creates directory
+    file:
+      path: /etc/nginx/certs
+      state: directory
+      owner: nginx
+  - name: Install pip
+    yum:
+      name: python-pip
+      update_cache: yes
+      state: present
+  - name: py tools
+    shell: yum install python-setuptools python-pip -y
+  - name: py udpdate
+    shell: pip install --upgrade "pip < 21.0"
+  - name: Install multi python packages with version specifiers
+    pip:
+      name:
+        - cryptography
+
+  - openssl_privatekey:
+      path: /etc/nginx/certs/self.key
+      size: 2048
+
+  - openssl_csr:
+      path: /etc/nginx/certs/self.csr
+      privatekey_path: /etc/nginx/certs/self.key
+
+  - openssl_certificate:
+      provider: selfsigned
+      path: /etc/nginx/certs/self.crt
+      privatekey_path: /etc/nginx/certs/self.key
+      csr_path: /etc/nginx/certs/self.csr

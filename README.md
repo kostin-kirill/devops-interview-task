@@ -1,74 +1,205 @@
-DevOps Pairing Exercise
-=======================
+Crate nginx server azure
+=========================
+# General information
+This service has stack of bash+ansible+az cli
+This service had these steps:
+1. create an VM on azure cloud(the os is centos)
+2. create network and firewall rules
+3. create load balancer
+4. configure server (install deps)
+5. install web server
 
-# Goal
 
-Automate the creation of a web server, and provide a healthcheck script to verify the server is up and responding correctly.
 
-# The Task
 
-You are required to provision and deploy a new service in Azure Cloud. It must:
+# Before you started
+configure this cloud shell by using this article: https://docs.microsoft.com/ru-ru/azure/cloud-shell/quickstart
+In case your cloud is not configured to use ansible do these steps:
+Open cloud cli (!use bash)
+* enter this comand to show account list:
+```
+az account list
+```
+* export parameter:
+```
+export AZURE_SUBSCRIPTION_ID=<your-subscription-id>
+```
 
-* Be publicly accessible, but *only* on port 80 and 443 via Load Balancer.
-* Accessible via SSH with Load balancer inbound NAT on Custom Port
-* Run Nginx.
-* Generate self signed cert
-* Serve a `/version.txt` file, containing only static text representing a version number, for example:
+<your-subscription_id> - change this (the information in previous step
+
+* generate the ssh key to access the vm's
 
 ```
-1.0.6
+ssh-keygen -t rsa -b 4096
 ```
 
-# Prerequisites
+# This Download the source code and structure description
 
-Microsoft temporary account and Azure Subscribtion access will be provided in advance.
+To get this service download  it in your cloud shell home directory  by using: 
 
-# Mandatory Work
+```
+git clone https://github.com/f4th3r/devops-interview-task
+```
 
-Fork this repository.
+Strucure:
 
-* Provide instructions on how to create the server.
+create_ss_cert.yml  create_vm_azure.yml  firstconnect.yml  host  lb  nginx  scripts   tmp
 
-* Bootstrap and provision the server using terraform. Use cloud init or a configuration management tool (such as Puppet, Chef or Ansible). Be prepared to justify your decision!
+ROOT dir contains:
+* create_ss_cert.yml  - ansible playbook to create certs
+* create_vm_azure.yml - ansible playbook to create vm 
+* firstconnect.yml    - ansible playbook to first connect to vm 
+* host - host file for vm connection from cloud shell 
 
-* Provide a heatlhcheck script that can be run externally to periodically check if the server is up and serving the expected version number.
 
-* Alter the README to contain the steps required to:
-  * Create the server.
-  * Run the healthcheck script.
+Dir lb contains:
 
-Give github users `kostin-kirill|infradmin|deep8611` access to your fork.
-Feel free to ask questions as you go if anything is unclear, confusing, or just plain missing.
+createlb.yml - DEPRICATED
+* createlb.yml ansible playbook to create lb  
 
-# Extra Credit
+ 
+ 
+Dir nginx  contains:
+install_set_nginx.yaml  nginx.conf              ssl.conf                static.conf             test.txt
 
-This exercise is time-boxed, but if any of these shortcut the process by making it easier in the long-run they might be worth considering up front. We won't mark you down for not doing the extra credits, but if you want to give them a go...
+* install_set_nginx.yaml  - ansible playbook to create nginx
+* nginx.conf              - nginx config
+* ssl.conf                - ssl config
+* static.conf             - 80 port config
+* test.txt                - the main page with version
 
-* Make the service resilient in 2 availability zones.
-* Run Nginx inside a Docker container or Kubernetes cluster.
-* Use the healthcheck script to start Nginx if it is not running.
-* Create DNS zone in Azure subscription with name devopstest(%randomnumber%).group
-* Issue Let's encrypt certiface for devopstest(%randomnumber%).group and www.devopstest(%randomnumber%).group and apply to webserver. 
+Dir scripts contains:
 
-        For example, you might decide to modify the script to SSH in to the instances and start if needed.
-        Alternatively you might configure a process manager to use the script on the hosts themselves,
-        such as supervisord or systemd.
+create_start_service.sh  daemon_health_check_443.sh  health_check_443.sh  log.log
 
-# Questions
+* create_start_service.sh  - the main scripts
+* daemon_health_check_443.sh  - start daemon to healthcheck script
+* health_check_443.sh  - healphcheck script
+* log.log  - file logs to log healph checks failds
 
-#### Can I use Google?
+Dir tmp  - for temp files
 
-Yes
 
-#### What scripting languages can I use?
 
-Any you like. You’ll have to justify your decision. We use Bash, Python, Groovy and JavaScript internally. Please pick something you're familiar with, as you'll need to be able to discuss it.
 
-#### What will you be grading me on?
 
-Scripting skills, elegance, understanding of the technologies you use, security, documentation.
+# HOWTO configure
+If you want to change parameters such as:
 
-#### Will I have a chance to explain my choices?
+* ResourceGroup            - Resource group in az
+* myVnet                   - Virtal network in az 
+* mySubnet                 - Subnet that will be created in az
+* myPublicIP               - The name of intrface with external ip
+* myNetworkSecurityGroup   - The security group with firewall rules
+* MyNIC                    - The vm network interface
+* myVM                     - The name of VM in az with web server       
+* MyLb                     - The load balancer name
+* PublicIPMyLb             - Public ip for lb 
+* port_for_ssh             - the ssh port(front port of LB). The destination port is 22          
 
-Hopefully this will emerge as we pair and converse.
-But feel free to comment your code, or put explanations in a pull request within the repo.
+Change  main script in config section:  scripts/create_start_service.sh
+
+
+
+# HOWTO start
+To start creating and configure service just run:
+1. go to scripts catalog:
+
+```
+cd scripts
+```
+2. start script:
+
+```
+./create_start_service.sh
+```
+PS:
+The are to ways to start this script. 
+1. The more secure way is just starting like in step 2.
+2. The second one is
+
+```
+./create_start_service.sh username password
+```
+* username - vm admin user
+* password - vm admin password 
+
+
+After starting script it will ask for username and password. 
+You will see the process of installation.
+It will stop on the first connect step.
+
+* The authenticity of host '[ip]:port ([ip]:port)' can't be established.
+
+Just say yes and push <ENTER>.
+
+If you want to use it without promt set StrictHostKeyChecking no in your /etc/ssh/ssh_config.
+!!!!It will work only in ansible vm host. And Wont work in cloud shell because of permissions.
+
+The process will take drom 3-5 minutes.
+After finishing you will see the credentials and ip adress to use ssh and https.
+
+
+
+
+# Testing
+
+The are 2 scripts to start simple check.
+
+just go to 
+
+```
+cd scripts
+```
+change the ip adrees in check create_start_service.sh sript(use your new ip of balancer in previous step) 
+
+To start check 
+
+```
+./health_check_443.sh
+```
+It will check version and web server health
+
+
+If you want to start in background mode
+
+```
+./daemon_health_check_443.sh &&
+```
+This mode start check it every 5 second and if the service down or version is changed(not that axpected) 
+it will echo this and write the log.
+
+To kill process just use
+```
+ps aux | grep daemon
+
+````
+and kill the process by id
+
+```
+kill process_name
+```
+
+
+# Delete service
+To delete service just use command:
+
+az group delete --name  myResourceGroup
+
+myResourceGroup - id group with that service
+!!!!DONT USE this command in case you have  another service in this namespace. 
+This command delete all services in this group
+
+
+
+
+
+
+
+
+
+
+
+
+
+
