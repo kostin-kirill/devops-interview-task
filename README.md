@@ -95,7 +95,7 @@ If you want to change parameters such as:
 * MyNIC                    - The vm network interface
 * myVM                     - The name of VM in az with web server       
 * MyLb                     - The load balancer name
-* PublicIPMyLb             - Public ip for lb 
+* PublicIPMyLb             - The lb name interface 
 * port_for_ssh             - the ssh port(front port of LB). The destination port is 22          
 
 Change  main script in config section:  scripts/create_start_service.sh
