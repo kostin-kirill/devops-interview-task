@@ -33,7 +33,7 @@ export AZURE_SUBSCRIPTION_ID=<your-subscription-id>
 ssh-keygen -t rsa -b 4096
 ```
 
-# This Download the source code and structure description
+# Download the source code and structure description
 
 To get this service download  it in your cloud shell home directory  by using: 
 
