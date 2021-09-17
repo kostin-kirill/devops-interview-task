@@ -47,8 +47,8 @@ This exercise is time-boxed, but if any of these shortcut the process by making 
 * Make the service resilient in 2 availability zones.
 * Run Nginx inside a Docker container or Kubernetes cluster.
 * Use the healthcheck script to start Nginx if it is not running.
-* Create DNS zone in Azure subscription with name devopstest(%randomnumber%).group
-* Issue Let's encrypt certiface for devopstest(%randomnumber%).group and www.devopstest(%randomnumber%).group and apply to webserver. 
+* Create DNS record in Azure subscription with name devopstest(%randomnumber%).try175654609.com
+* Issue Let's encrypt certiface for devopstest(%randomnumber%).try175654609.com and www.devopstest(%randomnumber%).try175654609.com and apply to webserver. 
 
         For example, you might decide to modify the script to SSH in to the instances and start if needed.
         Alternatively you might configure a process manager to use the script on the hosts themselves,
