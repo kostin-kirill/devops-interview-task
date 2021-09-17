@@ -2,7 +2,7 @@ Crate nginx server azure
 =========================
 # General information
 This service has stack of bash+ansible+az cli
-This service had these steps:
+This service has these steps:
 1. create an VM on azure cloud(the os is centos)
 2. create network and firewall rules
 3. create load balancer
