@@ -62,7 +62,7 @@ Yes
 
 #### What scripting languages can I use?
 
-Any you like. You’ll have to justify your decision. We use Bash, Python, Groovy and JavaScript internally. Please pick something you're familiar with, as you'll need to be able to discuss it.
+Any you like. You’ll have to justify your decision. We use Bash, Python, Powershell internally. Please pick something you're familiar with, as you'll need to be able to discuss it.
 
 #### What will you be grading me on?
 
