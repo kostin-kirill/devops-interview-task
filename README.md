@@ -21,7 +21,7 @@ You are required to provision and deploy a new service in Azure Cloud. It must:
 
 # Prerequisites
 
-Microsoft temporary account and Azure Subscribtion access will be provided in advance.
+Microsoft temporary account and Azure Subscribtion access will be provided in advance. Please note that you will be granted limited access with contributor on the resourcegroup. Please plan you actions according to the access you will have.
 
 # Mandatory Work
 
@@ -47,12 +47,12 @@ This exercise is time-boxed, but if any of these shortcut the process by making 
 * Make the service resilient in 2 availability zones.
 * Run Nginx inside a Docker container or Kubernetes cluster.
 * Use the healthcheck script to start Nginx if it is not running.
+
+# If time left
+
 * Create DNS record in Azure subscription with name devopstest(%randomnumber%).try175654609.com
 * Issue Let's encrypt certiface for devopstest(%randomnumber%).try175654609.com and www.devopstest(%randomnumber%).try175654609.com and apply to webserver. 
 
-        For example, you might decide to modify the script to SSH in to the instances and start if needed.
-        Alternatively you might configure a process manager to use the script on the hosts themselves,
-        such as supervisord or systemd.
 
 # Questions
 
